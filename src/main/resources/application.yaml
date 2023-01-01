@@ -1,0 +1,38 @@
+server:
+  port: 30000
+
+
+spring:
+  main:
+    lazy-initialization: true
+  application:
+    name: tech-spring
+  profiles:
+    active: default
+  web:
+    resources:
+      add-mappings: false
+  mvc:
+    throw-exception-if-no-handler-found: true
+
+
+
+logging:
+  level:
+    root: info
+    org.springframework.web: info
+    org.hibernate: error
+    vip.corejava.app.client: debug
+  file:
+    name: ./target/log/${spring.application.name}.log
+  logback:
+    rollingpolicy:
+      max-file-size: 20
+      max-history: 14
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 150000
+        readTimeout: 150000
