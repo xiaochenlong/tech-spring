@@ -120,6 +120,11 @@
 
     <repositories>
         <repository>
+            <id>central</id>
+            <url>https://maven.aliyun.com/repository/public</url>
+        </repository>
+
+        <repository>
             <id>spring-milestones</id>
             <name>Spring Milestones</name>
             <url>https://repo.spring.io/milestone</url>
@@ -127,8 +132,14 @@
                 <enabled>false</enabled>
             </snapshots>
         </repository>
+
         <repository>
-            <id>sheca-nexus</id>
+            <id>sheca-nexus-jj</id>
+            <url>http://192.168.2.31:30879/repository/maven-public/</url>
+        </repository>
+
+        <repository>
+            <id>sheca-nexus-coding</id>
             <url>https://sheca-dev-maven.pkg.coding.net/repository/fe/javalib/</url>
             <releases>
                 <enabled>true</enabled>
@@ -136,10 +147,6 @@
             <snapshots>
                 <enabled>true</enabled>
             </snapshots>
-        </repository>
-        <repository>
-            <id>central</id>
-            <url>https://maven.aliyun.com/repository/public</url>
         </repository>
     </repositories>
 
