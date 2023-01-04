@@ -4,6 +4,8 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import vip.corejava.app.json.AesJsonDeserializer;
+import vip.corejava.app.json.Sensitive;
+import vip.corejava.app.json.SensitiveStrategy;
 
 /**
  * @author xcl
@@ -21,6 +23,8 @@ public class SampleDto {
         @JsonDeserialize(using= AesJsonDeserializer.class)
         public String idCard;
 
+        public String phone;
+
     }
 
     @Data
@@ -28,6 +32,10 @@ public class SampleDto {
         public String name;
 
         public String idCard;
+
+        @Sensitive(strategy = SensitiveStrategy.PHONE)
+        public String phone;
+
     }
 
 }

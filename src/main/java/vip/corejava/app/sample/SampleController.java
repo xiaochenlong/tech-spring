@@ -33,6 +33,7 @@ public class SampleController {
         SampleDto.Resp resp = new SampleDto.Resp();
         resp.setName("hi," + req.name);
         resp.setIdCard("id," + req.idCard);
+        resp.setPhone(req.phone);
         return resp;
     }
 
