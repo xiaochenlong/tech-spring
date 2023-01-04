@@ -11,18 +11,17 @@ import java.io.IOException;
 
 
 /**
- * 发序列化去除空格
+ * 反序列号  json -> bean
+ * 去除空格
  */
 @JacksonStdImpl
 public class StringTrimDeserializer extends StringDeserializer {
 
-
     public final static StringTrimDeserializer instance = new StringTrimDeserializer();
-
 
     @Override
     public String deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
         String deserialize = super.deserialize(p, ctxt);
-        return StringUtils.trimAllWhitespace(deserialize);
+        return deserialize == null ? null : deserialize.trim();
     }
 }

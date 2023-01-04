@@ -32,6 +32,7 @@ public class SampleController {
         log.info("--------->{}", req);
         SampleDto.Resp resp = new SampleDto.Resp();
         resp.setName("hi," + req.name);
+        resp.setIdCard("id," + req.idCard);
         return resp;
     }
 
