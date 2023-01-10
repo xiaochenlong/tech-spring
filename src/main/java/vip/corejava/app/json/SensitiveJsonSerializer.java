@@ -18,7 +18,7 @@ import java.util.Objects;
 @JacksonStdImpl
 public class SensitiveJsonSerializer extends JsonSerializer<String> implements ContextualSerializer {
 
-    SensitiveStrategy sensitiveStrategy;
+    private SensitiveStrategy sensitiveStrategy;
 
     @Override
     public void serialize(String value, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
