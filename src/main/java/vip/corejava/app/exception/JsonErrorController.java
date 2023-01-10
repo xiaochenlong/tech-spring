@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.ServletRequestBindingException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
@@ -72,6 +73,24 @@ public class JsonErrorController extends AbstractErrorController {
         body.put("error", errors);
         return ResponseEntity.badRequest().body(body);
     }
+
+    /**
+     * 参数校验异常
+     *
+     * @param e
+     * @return
+     */
+    @ExceptionHandler({ServletRequestBindingException.class})
+    @ResponseBody
+    public ResponseEntity processException(ServletRequestBindingException e, HttpServletRequest request) {
+        log.error("Exception", e);
+        List<String> errors = new ArrayList<>();
+        Map<String, Object> body = getErrorAttributes(request, ErrorAttributeOptions.defaults().including(ErrorAttributeOptions.Include.MESSAGE));
+        body.put("error", errors);
+        return ResponseEntity.badRequest().body(body);
+    }
+
+
 
     @ExceptionHandler({Exception.class})
     @ResponseBody

@@ -22,7 +22,7 @@ public interface ZptonClient {
 
 
     @PostMapping(value = "/index/Login/passwordLogin",
-            consumes = MediaType.MULTIPART_FORM_DATA_VALUE,
+            consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     String login(
             @RequestPart(value = "password") String password,

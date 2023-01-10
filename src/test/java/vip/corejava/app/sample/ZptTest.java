@@ -49,7 +49,7 @@ public class ZptTest {
         String id = responseBody.get("id").asText();
         String username = responseBody.get("username").asText();
         String token = responseBody.get("token").asText();
-
+        log.info("---->{},{},{}", id, username, token);
     }
 
     @Test
@@ -77,12 +77,12 @@ public class ZptTest {
                     int videoTime = LocalTime.parse(video_time).toSecondOfDay();
                     int is_finished = v.get("is_finished").asInt();
                     int viewed_time = v.get("viewed_time").asInt();
-                    log.info("---------{}:{}:{}:{}",id, videoTime, is_finished, viewed_time);
-                    if(viewed_time<videoTime){
-                        buf +=(videoTime-viewed_time);
+                    log.info("---------{}:{}:{}:{}", id, videoTime, is_finished, viewed_time);
+                    if (viewed_time < videoTime) {
+                        buf += (videoTime - viewed_time);
                     }
-                    if (is_finished == 20 && viewed_time==0) {
-                        threadPool.submit(()->{
+                    if (is_finished == 20 && viewed_time == 0) {
+                        threadPool.submit(() -> {
                             try {
                                 Thread.sleep(3 * 1000);
                             } catch (InterruptedException e) {
@@ -110,7 +110,7 @@ public class ZptTest {
             }
         }
         log.info("qqq---------{}", buf);
-        log.info("xxx---------{}", buf/60);
+        log.info("xxx---------{}", buf / 60);
         //System.in.read();
     }
 
@@ -133,11 +133,12 @@ public class ZptTest {
     @Test
     void t1_cuttingDuration() throws InterruptedException {
 
-        
+
         int id = 174475;
         int videoTime = 1518;
         String record = zptonClient.insStudyRecord(classId, studentId, id, type, token, username);
-        log.info("insStudyRecord---------{}", record);Thread.sleep(videoTime * 1000);
+        log.info("insStudyRecord---------{}", record);
+        Thread.sleep(videoTime * 1000);
         String format = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss"));
         String cuttingDuration = zptonClient.screenCuttingDuration(classId, studentId, videoTime + 2,
                 1, id, 1,
