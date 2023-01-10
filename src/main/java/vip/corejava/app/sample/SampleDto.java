@@ -1,9 +1,11 @@
 package vip.corejava.app.sample;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import vip.corejava.app.json.AesJsonDeserializer;
+import vip.corejava.app.json.AesJsonSerializer;
 import vip.corejava.app.json.Sensitive;
 import vip.corejava.app.json.SensitiveStrategy;
 
@@ -20,7 +22,10 @@ public class SampleDto {
         @NotBlank
         public String name;
 
-        @JsonDeserialize(using= AesJsonDeserializer.class)
+        /**
+         * 解密处理
+         */
+        @JsonDeserialize(using = AesJsonDeserializer.class)
         public String idCard;
 
         public String phone;
@@ -31,8 +36,12 @@ public class SampleDto {
     public static class Resp {
         public String name;
 
+        @JsonSerialize(using = AesJsonSerializer.class)
         public String idCard;
 
+        /**
+         * 脱敏处理
+         */
         @Sensitive(strategy = SensitiveStrategy.PHONE)
         public String phone;
 
