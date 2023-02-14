@@ -1,4 +1,4 @@
-package vip.corejava.app.sample;
+package vip.corejava.app.web;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationListener;
@@ -9,12 +9,12 @@ import org.springframework.web.context.support.ServletRequestHandledEvent;
  * @author xcl
  * @date 2022/12/13
  */
-@Component
+//@Component
 @Slf4j
 public class RequestHandledEventListener implements ApplicationListener<ServletRequestHandledEvent> {
 
     @Override
     public void onApplicationEvent(ServletRequestHandledEvent event) {
-        log.info("[RequestHandledEventListener]{}", event.getDescription());
+       log.info("[RequestHandledEventListener]{}", event.getDescription());
     }
 }

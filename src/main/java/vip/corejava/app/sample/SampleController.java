@@ -9,6 +9,8 @@ import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import vip.corejava.app.security.LoginPrincipal;
+import vip.corejava.app.security.LoginPrincipalHolder;
 
 import java.time.LocalDateTime;
 
@@ -24,8 +26,8 @@ public class SampleController {
 
     @RequestMapping("/")
     public String home() {
-        SecurityContext context = SecurityContextHolder.getContext();
-        return "Hello World!" + context.getAuthentication();
+        LoginPrincipal principal = LoginPrincipalHolder.getLoginPrincipal();
+        return "Hello World!" + principal.nickName;
     }
 
     @RequestMapping("/index")
@@ -39,8 +41,8 @@ public class SampleController {
     }
 
 
-    @RequestMapping(path = "/part", consumes = MediaType.ALL_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
-    public SampleDto.Resp index(@RequestParam(name = "name")  @NotBlank String name,
+    @RequestMapping(path = "/part", consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public SampleDto.Resp index(@RequestParam(name = "name") @NotBlank String name,
                                 @RequestParam(name = "idCard") @NotBlank String idCard,
                                 @RequestParam(name = "phone") @NotBlank String phone) {
         log.info("--------->{}", name);

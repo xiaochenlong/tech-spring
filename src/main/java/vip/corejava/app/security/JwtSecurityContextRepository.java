@@ -39,7 +39,12 @@ public class JwtSecurityContextRepository implements SecurityContextRepository {
 
     private Authentication getAuthentication(HttpServletRequest request) {
         List<GrantedAuthority> authorities = Collections.EMPTY_LIST;
-        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken("mock", null, authorities);
+        LoginPrincipal principal = new LoginPrincipal();
+        principal.id = -1l;
+        principal.admin = true;
+        principal.name = "mock";
+        principal.nickName = "mock";
+        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(principal, null, authorities);
         return authentication;
     }
 
