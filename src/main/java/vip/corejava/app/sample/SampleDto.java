@@ -23,7 +23,7 @@ public class SampleDto {
         public String name;
 
         /**
-         * 解密处理
+         * 解密
          */
         @JsonDeserialize(using = AesJsonDeserializer.class)
         public String idCard;
@@ -36,6 +36,9 @@ public class SampleDto {
     public static class Resp {
         public String name;
 
+        /**
+         * 加密
+         */
         @JsonSerialize(using = AesJsonSerializer.class)
         public String idCard;
 
