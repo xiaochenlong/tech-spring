@@ -11,7 +11,6 @@ public class LoginPrincipal implements AuthenticatedPrincipal {
     public Long id;
     public String name;
     public String nickName;
-    public String nonce;
     public boolean admin;
     public String key;
 

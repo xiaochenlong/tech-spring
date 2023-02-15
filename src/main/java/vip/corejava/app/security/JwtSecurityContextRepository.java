@@ -15,6 +15,7 @@ import org.springframework.security.web.context.SecurityContextRepository;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * @author xcl
@@ -40,10 +41,11 @@ public class JwtSecurityContextRepository implements SecurityContextRepository {
     private Authentication getAuthentication(HttpServletRequest request) {
         List<GrantedAuthority> authorities = Collections.EMPTY_LIST;
         LoginPrincipal principal = new LoginPrincipal();
-        principal.id = -1l;
+        principal.id = 99l;
         principal.admin = true;
         principal.name = "mock";
         principal.nickName = "mock";
+        principal.key = UUID.randomUUID().toString();
         UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(principal, null, authorities);
         return authentication;
     }
