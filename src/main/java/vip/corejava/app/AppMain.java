@@ -9,7 +9,7 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
  * @author xcl
  * @date 2022/11/28
  */
-@SpringBootApplication(exclude = {UserDetailsServiceAutoConfiguration.class})
+@SpringBootApplication
 @ServletComponentScan(value = "vip.corejava.app.web")
 public class AppMain {
 

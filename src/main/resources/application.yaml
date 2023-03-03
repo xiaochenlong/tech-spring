@@ -14,6 +14,12 @@ spring:
       add-mappings: false
   mvc:
     throw-exception-if-no-handler-found: true
+  data:
+    redis:
+      host: 1.116.14.13
+      connect-timeout: 10000
+      port: 6379
+      password: toor
 
 
 

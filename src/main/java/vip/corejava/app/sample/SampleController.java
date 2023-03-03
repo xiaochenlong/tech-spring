@@ -1,8 +1,11 @@
 package vip.corejava.app.sample;
 
+import jakarta.annotation.Resource;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import lombok.extern.slf4j.Slf4j;
+import org.redisson.api.RLock;
+import org.redisson.api.RedissonClient;
 import org.springframework.http.MediaType;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.security.core.context.SecurityContext;
@@ -13,6 +16,7 @@ import vip.corejava.app.security.LoginPrincipal;
 import vip.corejava.app.security.LoginPrincipalHolder;
 
 import java.time.LocalDateTime;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author xcl
@@ -24,9 +28,17 @@ import java.time.LocalDateTime;
 @Validated
 public class SampleController {
 
+    @Resource
+    RedissonClient redisson;
+
+
     @RequestMapping("/")
-    public String home() {
+    public String home() throws InterruptedException {
+        RLock lock = redisson.getLock("myLock");
+        boolean res2 = lock.tryLock(31, TimeUnit.SECONDS);
+        log.info("-res4-{}", res2);
         LoginPrincipal principal = LoginPrincipalHolder.getLoginPrincipal();
+        lock.unlock();
         return "Hello World!" + principal.nickName;
     }
 
