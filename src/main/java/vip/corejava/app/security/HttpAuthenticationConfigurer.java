@@ -13,11 +13,10 @@ public class HttpAuthenticationConfigurer extends GlobalAuthenticationConfigurer
 
     @Override
     public void init(AuthenticationManagerBuilder auth) throws Exception {
-        super.init(auth);
+        auth.inMemoryAuthentication().withUser("demo").password("111").authorities("admin");
     }
 
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        super.configure(auth);
     }
 }

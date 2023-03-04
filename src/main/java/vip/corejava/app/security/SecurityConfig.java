@@ -38,11 +38,6 @@ public class SecurityConfig {
         return httpAuthorizationManager;
     }
 
-    //@Bean
-    public AuthenticationManager authenticationManager() {
-        return new ProviderManager();
-    }
-
     /**
      * @param http
      * @return
