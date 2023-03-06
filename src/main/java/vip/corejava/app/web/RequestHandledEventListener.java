@@ -9,7 +9,7 @@ import org.springframework.web.context.support.ServletRequestHandledEvent;
  * @author xcl
  * @date 2022/12/13
  */
-//@Component
+@Component
 @Slf4j
 public class RequestHandledEventListener implements ApplicationListener<ServletRequestHandledEvent> {
 

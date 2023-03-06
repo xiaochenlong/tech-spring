@@ -3,6 +3,8 @@ package vip.corejava.app.config;
 import org.springframework.aop.interceptor.AsyncUncaughtExceptionHandler;
 import org.springframework.aop.interceptor.SimpleAsyncUncaughtExceptionHandler;
 import org.springframework.beans.factory.BeanFactory;
+import org.springframework.boot.autoconfigure.task.TaskExecutionAutoConfiguration;
+import org.springframework.boot.autoconfigure.task.TaskSchedulingAutoConfiguration;
 import org.springframework.boot.task.TaskSchedulerCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,8 +18,8 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import java.util.concurrent.Executor;
 
 /**
- * * @see TaskSchedulingAutoConfiguration
- * * @see TaskExecutionAutoConfiguration
+ * @see TaskSchedulingAutoConfiguration
+ * @see TaskExecutionAutoConfiguration
  */
 @Configuration
 @EnableAsync
@@ -59,10 +61,16 @@ public class AppAsyncConfigurer implements AsyncConfigurer {
         return new SimpleAsyncUncaughtExceptionHandler();
     }
 
+    /**
+     * ApplicationListener.onApplicationEvent
+     *
+     * @param beanFactory
+     * @return
+     */
     @Bean(name = AbstractApplicationContext.APPLICATION_EVENT_MULTICASTER_BEAN_NAME)
     public SimpleApplicationEventMulticaster simpleApplicationEventMulticaster(BeanFactory beanFactory) {
         SimpleApplicationEventMulticaster multicaster = new SimpleApplicationEventMulticaster(beanFactory);
-        multicaster.setTaskExecutor(getTaskExecutor("Event-"));
+        multicaster.setTaskExecutor(getTaskExecutor("AppListener-"));
         return multicaster;
     }
 
