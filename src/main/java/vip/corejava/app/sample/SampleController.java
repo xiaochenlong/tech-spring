@@ -35,11 +35,16 @@ public class SampleController {
     @RequestMapping("/")
     public String home() throws InterruptedException {
         RLock lock = redisson.getLock("myLock");
-        boolean res2 = lock.tryLock(31, TimeUnit.SECONDS);
-        log.info("-res4-{}", res2);
-        LoginPrincipal principal = LoginPrincipalHolder.getLoginPrincipal();
-        lock.unlock();
-        return "Hello World!" + principal.nickName;
+        try {
+            boolean locked = lock.tryLock(31, TimeUnit.SECONDS);
+            if (!locked) {
+                return "unlock";
+            }
+            LoginPrincipal principal = LoginPrincipalHolder.getLoginPrincipal();
+            return "Hello World!" + principal.nickName;
+        } finally {
+            lock.unlock();
+        }
     }
 
     @RequestMapping("/index")
