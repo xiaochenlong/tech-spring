@@ -32,7 +32,7 @@ public class ZptTest {
     ZptonClient zptonClient;
 
     String token = "WkhBTkdTaXIyNDgyNzFmNzVmY2FjYTQ4MzgzYTRjMzgyNjAwZDNhMg==";
-    String username = "18516690799";
+    String username = "18516698899";
     String classId = "3744";
     String type = "1";
     String studentId = "65992";
@@ -43,7 +43,7 @@ public class ZptTest {
 
     @Test
     void login() throws JsonProcessingException {
-        String resp = zptonClient.login("3354333256267a24d858b1177205e691", "18516690799");
+        String resp = zptonClient.login("3354333256267a24d858b1177205e691", "18516698899");
         JsonNode jsonNode = objectMapper.readTree(resp);
         JsonNode responseBody = jsonNode.get("responseBody");
         String id = responseBody.get("id").asText();

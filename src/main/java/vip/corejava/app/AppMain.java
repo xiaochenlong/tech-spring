@@ -11,7 +11,6 @@ import org.springframework.cache.annotation.EnableCaching;
  * @date 2022/11/28
  */
 @SpringBootApplication
-@ServletComponentScan(value = "vip.corejava.app.web")
 public class AppMain {
 
     public static void main(String[] args) {
