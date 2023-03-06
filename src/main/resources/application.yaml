@@ -20,6 +20,8 @@ spring:
       connect-timeout: 10000
       port: 6379
       password: toor
+  cache:
+    type: redis
 
 
 

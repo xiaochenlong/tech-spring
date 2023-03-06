@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.redisson.api.*;
 import org.redisson.api.listener.MessageListener;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.cache.CacheManager;
 import vip.corejava.app.web.Response;
 
 import java.util.concurrent.CountDownLatch;
@@ -22,7 +23,6 @@ public class RedisTest {
 
     @Resource
     RedissonClient redisson;
-
 
     @Test
     void t1() {

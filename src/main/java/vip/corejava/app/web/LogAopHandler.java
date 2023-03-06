@@ -1,6 +1,5 @@
 package vip.corejava.app.web;
 
-import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -8,15 +7,16 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StopWatch;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+
+import java.util.Objects;
 
 @Aspect
 @Component
 @Slf4j
 public class LogAopHandler {
-
-    //自动注入request
-    @Resource
-    private HttpServletRequest request;
 
 
     @Pointcut("execution(* vip.corejava.app..*Controller.*(..))")
@@ -34,9 +34,15 @@ public class LogAopHandler {
         } catch (Exception e) {
             throw e;
         } finally {
+            StringBuffer url = null;
+            String name = null;
+            ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+            if (Objects.nonNull(requestAttributes)) {
+                HttpServletRequest request = requestAttributes.getRequest();
+                url = request.getRequestURL();
+            }
             long endTime = System.currentTimeMillis();
-            String name = "";
-            log.info("{请求接口:[{}],userName:[{}]耗时:{}ms,参数:{},返回值:{}}", request.getRequestURL(), name, endTime - startTime, args, retVal);
+            log.info("{请求接口:[{}],userName:[{}]耗时:{}ms,参数:{},返回值:{}}", url, name, endTime - startTime, args, retVal);
         }
     }
 }
