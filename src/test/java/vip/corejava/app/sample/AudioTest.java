@@ -11,9 +11,9 @@ import java.io.IOException;
 import java.util.HashMap;
 
 public class AudioTest {
-    public static final String APP_ID = "31138219";
-    public static final String API_KEY = "o1AGd2iPkGBXDK5sFYuoYxST";
-    public static final String SECRET_KEY = "Z1tN0U53HE8dCelwmIb1pGTkjrt16scj";
+    public static final String APP_ID = "31s1s382e19";
+    public static final String API_KEY = "o1AGd2eiPkGsBXDK5sFYuoYxST";
+    public static final String SECRET_KEY = "Z1tNs0U53HeE8dCseslwmIsb1pGTkjsrt16scj";
 
     @Test
     void name() throws JSONException {
