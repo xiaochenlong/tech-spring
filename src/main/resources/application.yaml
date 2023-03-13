@@ -16,10 +16,10 @@ spring:
     throw-exception-if-no-handler-found: true
   data:
     redis:
-      host: 1.116.14.13
+      host: 1.11.14.222
       connect-timeout: 10000
       port: 6379
-      password: toor
+      password: 12345
   cache:
     type: redis
 

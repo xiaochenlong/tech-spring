@@ -26,14 +26,11 @@ public class RedisTest {
 
     @Test
     void t1() {
-
         RAtomicLong atomicLong = redisson.getAtomicLong("myAtomicLong");
         atomicLong.set(3);
         atomicLong.incrementAndGet();
         long l = atomicLong.get();
         log.info("----->{}", l);
-
-
     }
 
     @Test
